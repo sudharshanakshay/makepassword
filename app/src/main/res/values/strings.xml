@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Make Password</string>
+    <string name="password"> password </string>
+    <string name="generate_password">Generate Password</string>
+    <string name="lowercaseEg">e.g. abcdefghi</string>
+    <string name="uppercaseEg">e.g. ABSCDGHI</string>
+    <string name="symbolEg">e.g. @#$%</string>
+    <string name="numericalsEg">e.g. 123456</string>
+    <string name="ambiguousEg"><![CDATA[e.g. { } [ ] ( ) / \' ` ~ , ; : . < >]]></string>
+    <string name="copyBtn">copy</string>
+</resources>

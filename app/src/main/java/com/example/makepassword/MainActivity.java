@@ -20,7 +20,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     Random random =  new Random();
-    Switch includeSpecial, includeUpperCase, includeLowerCase, includeNumerals, includeAmbiguous;
+    Switch includeSymbol, includeUpperCase, includeLowerCase, includeNumerals, includeAmbiguous;
 
 
     private char getMyPassword(int type){
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 if (includeLowerCase.isChecked())
                 p = (char)(random.nextInt(26)+'a'); // random alphabet
             break;
-            case 1: if(includeSpecial.isChecked()){
+            case 1: if(includeSymbol.isChecked()){
                 p = symbols.charAt(random.nextInt(symbols.length())); // random special char
                 }
                 break;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setVarientON(){
-        if(includeSpecial.isChecked() || includeUpperCase.isChecked() || includeLowerCase.isChecked()
+        if(includeSymbol.isChecked() || includeUpperCase.isChecked() || includeLowerCase.isChecked()
         || includeNumerals.isChecked() || includeAmbiguous.isChecked()){
             return;
         }else {
@@ -86,13 +86,14 @@ public class MainActivity extends AppCompatActivity {
         final TextView displayPass = findViewById(R.id.displayPass);
         final TextView displayPassLen = findViewById(R.id.displayPassLen);
         SeekBar getPassLen = findViewById(R.id.getPassLenSeekBar);
-        includeSpecial = findViewById(R.id.includeSpecial);
+        includeSymbol = findViewById(R.id.includeSymbol);
         includeUpperCase = findViewById(R.id.includeUpperChar);
         includeLowerCase = findViewById(R.id.includeLowerCase);
         includeNumerals = findViewById(R.id.includeNumericals);
         includeAmbiguous = findViewById(R.id.includeAmbiguous);
         includeLowerCase.setChecked(true);
         includeUpperCase.setChecked(true);
+        includeSymbol.setChecked(true);
 
         final String[] password = new String[1];
         final String lable = "pass";

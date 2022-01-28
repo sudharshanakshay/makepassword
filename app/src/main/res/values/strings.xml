@@ -8,4 +8,9 @@
     <string name="numericalsEg">e.g. 123456</string>
     <string name="ambiguousEg"><![CDATA[e.g. { } [ ] ( ) / \' ` ~ , ; : . < >]]></string>
     <string name="copyBtn">copy</string>
+    <string name="lower_case">Lower Case</string>
+    <string name="upper_case">Upper Case</string>
+    <string name="symbol">Symbol</string>
+    <string name="numerals">Numerals</string>
+    <string name="ambiguous">Ambiguous</string>
 </resources>

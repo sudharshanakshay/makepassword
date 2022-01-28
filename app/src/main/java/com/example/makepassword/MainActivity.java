@@ -13,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.lang.reflect.Type;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -98,12 +100,16 @@ public class MainActivity extends AppCompatActivity {
         passLen[0] = 8;
 
         displayPass.setText(generatepass(passLen[0]));
+        displayPassLen.setText(String.valueOf(passLen[0]));
+        getPassLen.setProgress(8);
+        getPassLen.setMax(50);
 
 
         getPassLen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 passLen[0] =  progress;
+                seekBar.setTooltipText(String.valueOf(progress));
             }
 
             @Override
@@ -113,7 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                displayPassLen.setText(passLen.toString());
+                displayPassLen.setText((String.valueOf(passLen[0])));
+                System.out.println(passLen[0]);
             }
         });
 

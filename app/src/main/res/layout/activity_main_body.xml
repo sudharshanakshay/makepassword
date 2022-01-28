@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/displayPass"
+        android:layout_width="252dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="332dp"
+        android:background="@drawable/border"
+        android:hint="@string/password"
+        android:gravity="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/genpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/generate_password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displayPass"
+        app:layout_constraintVertical_bias="0.204" />
+
+    <Switch
+        android:id="@+id/includeSpecial"
+        android:layout_width="173dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:text="Symbol"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/includeUpperChar" />
+
+    <Switch
+        android:id="@+id/includeUpperChar"
+        android:layout_width="173dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:text="Upper Case  "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/includeLowerCase" />
+
+    <Switch
+        android:id="@+id/includeLowerCase"
+        android:layout_width="173dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="24dp"
+        android:text="Lower Case  "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/includeAmbiguous"
+        android:layout_width="173dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:text="Include Ambiguous"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/includeNumericals" />
+
+    <Switch
+        android:id="@+id/includeNumericals"
+        android:layout_width="173dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:text="Numerals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/includeSpecial" />
+
+    <TextView
+        android:id="@+id/lowerCaseExample"
+        android:layout_width="98dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lowercaseEg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.762"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/upperCaseExample"
+        android:layout_width="98dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/uppercaseEg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lowerCaseExample" />
+
+    <TextView
+        android:id="@+id/specialCharExample"
+        android:layout_width="98dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/symbolEg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upperCaseExample" />
+
+    <TextView
+        android:id="@+id/numericalsExample"
+        android:layout_width="98dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/numericalsEg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/specialCharExample" />
+
+    <TextView
+        android:id="@+id/ambiguousExample"
+        android:layout_width="98dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/ambiguousEg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.763"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numericalsExample" />
+
+    <Button
+        android:id="@+id/copyBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="332dp"
+        android:backgroundTint="@color/copyBtn"
+        android:textColor="@color/textWhite"
+        android:text="@string/copyBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.295"
+        app:layout_constraintStart_toEndOf="@+id/displayPass"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <SeekBar
+        android:id="@+id/getPassLenSeekBar"
+        android:layout_width="145dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="44dp"
+        android:thumbTint="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toEndOf="@+id/displayPassLen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.398" />
+
+    <TextView
+        android:id="@+id/displayPassLen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.393" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

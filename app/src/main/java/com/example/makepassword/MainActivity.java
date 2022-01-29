@@ -18,6 +18,10 @@ import android.widget.Toast;
 import java.lang.reflect.Type;
 import java.util.Random;
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 public class MainActivity extends AppCompatActivity {
 
     Random random =  new Random();
@@ -26,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     private char getMyPassword(int type){
         char p = ' ';
-        String symbols = "!@#$%^*?+=&";
-        String ambiguous = "{}[]()/\\'\"`~,;:.<>";
+        String symbols = "!@#$%*?+=&";
+        String ambiguous = "{}[]()/\\'\"`~,;:.<>^";
         switch (type){
             case 0:
                 if (includeLowerCase.isChecked())
@@ -60,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
         }else {
             includeLowerCase.setChecked(true);
             includeUpperCase.setChecked(true);
-
+            includeSymbol.setChecked(true);
         }
     }
 
     private String generatepass(int passLEN){
         StringBuilder password= new StringBuilder();
         char value;
-        while(password.length() <= passLEN){
+        while(password.length() < passLEN){
             setVarientON();
             value = getMyPassword(random.nextInt(5));
             if(value == ' ') continue;
@@ -83,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(!(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)){
             setContentView(R.layout.activity_main_body);
-            Button genPass = findViewById(R.id.genpass);
+            Button generatePasswordBtn = findViewById(R.id.genpass);
             Button copyBtn = findViewById(R.id.copyBtn);
             final TextView displayPass = findViewById(R.id.displayPass);
             final TextView displayPassLen = findViewById(R.id.displayPassLen);
@@ -93,9 +97,8 @@ public class MainActivity extends AppCompatActivity {
             includeLowerCase = findViewById(R.id.includeLowerCase);
             includeNumerals = findViewById(R.id.includeNumericals);
             includeAmbiguous = findViewById(R.id.includeAmbiguous);
-            includeLowerCase.setChecked(true);
-            includeUpperCase.setChecked(true);
-            includeSymbol.setChecked(true);
+
+            setVarientON();
 
             final String[] password = new String[1];
             final String lable = "pass";
@@ -104,15 +107,15 @@ public class MainActivity extends AppCompatActivity {
 
             displayPass.setText(generatepass(passLen[0]));
             displayPassLen.setText(String.valueOf(passLen[0]));
-            getPassLenSeekBar.setMin(8);
-//        getPassLenSeekBar.setProgress(8);
+            getPassLenSeekBar.setMin(5);
+            getPassLenSeekBar.setProgress(8);
             getPassLenSeekBar.setMax(50);
 
 
             getPassLenSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    passLen[0] =  progress-1;
+                    passLen[0] =  progress;
                     seekBar.setTooltipText(String.valueOf(progress));
                 }
 
@@ -128,11 +131,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            genPass.setOnClickListener(new View.OnClickListener() {
+            generatePasswordBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     password[0] = generatepass(passLen[0]);
                     displayPass.setText(password[0]);
+                    displayPassLen.setText(String.valueOf(password[0].length()));
                 }
             });
 
@@ -148,6 +152,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         else setContentView(R.layout.landscape);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
 
 

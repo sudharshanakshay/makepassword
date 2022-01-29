@@ -6,6 +6,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -79,69 +80,76 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_body);
 
-        Button genPass = findViewById(R.id.genpass);
-        Button copyBtn = findViewById(R.id.copyBtn);
-        final TextView displayPass = findViewById(R.id.displayPass);
-        final TextView displayPassLen = findViewById(R.id.displayPassLen);
-        SeekBar getPassLen = findViewById(R.id.getPassLenSeekBar);
-        includeSymbol = findViewById(R.id.includeSymbol);
-        includeUpperCase = findViewById(R.id.includeUpperChar);
-        includeLowerCase = findViewById(R.id.includeLowerCase);
-        includeNumerals = findViewById(R.id.includeNumericals);
-        includeAmbiguous = findViewById(R.id.includeAmbiguous);
-        includeLowerCase.setChecked(true);
-        includeUpperCase.setChecked(true);
-        includeSymbol.setChecked(true);
+        if(!(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)){
+            setContentView(R.layout.activity_main_body);
+            Button genPass = findViewById(R.id.genpass);
+            Button copyBtn = findViewById(R.id.copyBtn);
+            final TextView displayPass = findViewById(R.id.displayPass);
+            final TextView displayPassLen = findViewById(R.id.displayPassLen);
+            SeekBar getPassLenSeekBar = findViewById(R.id.getPassLenSeekBar);
+            includeSymbol = findViewById(R.id.includeSymbol);
+            includeUpperCase = findViewById(R.id.includeUpperChar);
+            includeLowerCase = findViewById(R.id.includeLowerCase);
+            includeNumerals = findViewById(R.id.includeNumericals);
+            includeAmbiguous = findViewById(R.id.includeAmbiguous);
+            includeLowerCase.setChecked(true);
+            includeUpperCase.setChecked(true);
+            includeSymbol.setChecked(true);
 
-        final String[] password = new String[1];
-        final String lable = "pass";
-        final int[] passLen = new int[1];
-        passLen[0] = 8;
+            final String[] password = new String[1];
+            final String lable = "pass";
+            final int[] passLen = new int[1];
+            passLen[0] = 8;
 
-        displayPass.setText(generatepass(passLen[0]));
-        displayPassLen.setText(String.valueOf(passLen[0]));
-        getPassLen.setProgress(8);
-        getPassLen.setMax(50);
+            displayPass.setText(generatepass(passLen[0]));
+            displayPassLen.setText(String.valueOf(passLen[0]));
+            getPassLenSeekBar.setMin(8);
+//        getPassLenSeekBar.setProgress(8);
+            getPassLenSeekBar.setMax(50);
 
 
-        getPassLen.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                passLen[0] =  progress;
-                seekBar.setTooltipText(String.valueOf(progress));
-            }
+            getPassLenSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    passLen[0] =  progress-1;
+                    seekBar.setTooltipText(String.valueOf(progress));
+                }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
+                }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                displayPassLen.setText((String.valueOf(passLen[0])));
-                System.out.println(passLen[0]);
-            }
-        });
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    displayPassLen.setText((String.valueOf(passLen[0])));
+                    System.out.println(passLen[0]);
+                }
+            });
 
-        genPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                password[0] = generatepass(passLen[0]);
-                displayPass.setText(password[0]);
-            }
-        });
+            genPass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    password[0] = generatepass(passLen[0]);
+                    displayPass.setText(password[0]);
+                }
+            });
 
-        copyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clipData = ClipData.newPlainText(lable, password[0]);
-                clipboardManager.setPrimaryClip(clipData);
-                Toast.makeText(getApplicationContext(), "password copied !",Toast.LENGTH_SHORT).show();
-            }
-        });
+            copyBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clipData = ClipData.newPlainText(lable, password[0]);
+                    clipboardManager.setPrimaryClip(clipData);
+                    Toast.makeText(getApplicationContext(), "password copied !",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        else setContentView(R.layout.landscape);
+
+
 
     }
 }

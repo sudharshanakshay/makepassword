@@ -12,7 +12,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-8835845551941199~5120880454" />
+            android:value="@string/GoogleAdKey" />
 
         <activity android:name=".MainActivity" >
             <intent-filter>

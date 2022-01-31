@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id= "@+id/nav_camera"
-        android:title= "Import" />
+        android:title= "Password References">
+    </item>
 
 </menu>

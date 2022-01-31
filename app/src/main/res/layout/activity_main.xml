@@ -7,17 +7,11 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="right"
-        app:menu="@menu/right_drawer_menu" >
-    <ListView
-        android:id="@+id/drawer_list_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    </com.google.android.material.navigation.NavigationView>
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:id="@+id/navigation"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="right"/>-->
 
     <include layout="@layout/activity_main_body"
         android:layout_height="match_parent"

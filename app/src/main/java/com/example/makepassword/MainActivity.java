@@ -1,13 +1,19 @@
 package com.example.makepassword;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -22,17 +28,20 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.navigation.NavigationView;
 
+import javax.net.ssl.SNIHostName;
+
+import static android.widget.Toast.makeText;
+
 public class MainActivity extends AppCompatActivity {
 
-    private static int rear=0, capacity = 10;
+    private static int rear=0, prev=0, capacity = 10;
     private static String[] queue = new String[capacity];
 
     static void insertValueToQueue(String value){
+        if(value.equals(queue[prev])) return;
         queue[rear] = value;
-        System.out.println("value in insert "+value);
-        System.out.println("value in queue after insert "+queue[rear]);
+        prev = rear;
         rear = ((rear+1) % capacity);
-        System.out.println("rear pointing to position "+rear);
     }
 
     static String[] getValueFromQueue(){
@@ -177,7 +186,8 @@ public class MainActivity extends AppCompatActivity {
                     ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                     ClipData clipData = ClipData.newPlainText(label, password[0]);
                     clipboardManager.setPrimaryClip(clipData);
-                    Toast.makeText(getApplicationContext(), "password copied !",Toast.LENGTH_SHORT).show();
+                    makeText(MainActivity.this, "password copied !",Toast.LENGTH_SHORT).show();
+
                     insertValueToQueue(String.valueOf(password[0]));
                     System.out.println("password when copied "+password[0]);
                     for(String i : getValueFromQueue())
@@ -185,23 +195,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            // Right Drawer
-            DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-            NavigationView navigationView = findViewById(R.id.navigation);
-            ListView listView = findViewById(R.id.drawer_list_view);
 
-            String[] hello = new String[2];
 
-            hello[0] = "sudharshan";
-            hello[1] = "not sudharshan" ;
-
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MainActivity.this, R.layout.listtextview, hello);
-            listView.setAdapter(arrayAdapter);
-
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout,
-                    R.string.openDrawerContentDescRes, R.string.closeDrawerContentDescRes);
-            drawerLayout.addDrawerListener(toggle);
-            toggle.syncState();
         }
 
         else setContentView(R.layout.landscape);
@@ -211,8 +206,41 @@ public class MainActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-
-
-
     }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if(drawer.isDrawerOpen(GravityCompat.END))
+            drawer.closeDrawer(GravityCompat.END);
+        else super.onBackPressed();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        System.out.println(rear);
+        if (!String.valueOf(menu.getItem(menu.size()-1)).equals(queue[prev]))
+        for (String x : getValueFromQueue())
+            if (x != null) menu.add(x);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.right_drawer_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        final String label = "pass";
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData =  ClipData.newPlainText(label, String.valueOf(item));
+        clipboardManager.setPrimaryClip(clipData);
+        makeText(MainActivity.this, "password copied !",Toast.LENGTH_SHORT).show();
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

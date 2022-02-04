@@ -3,8 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id= "@+id/nav_camera"
-        android:title= "Password References">
-    </item>
-
+        android:id= "@+id/l1"
+        android:title= "layout 1"/>
+    <item
+        android:id="@+id/l2"
+        android:title="layout 2"/>
 </menu>

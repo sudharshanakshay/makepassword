@@ -1,7 +1,6 @@
 package com.example.makepassword;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,14 +9,11 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -26,14 +22,12 @@ import java.util.Random;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.material.navigation.NavigationView;
-
-import javax.net.ssl.SNIHostName;
-
 import static android.widget.Toast.makeText;
 
 public class MainActivity extends AppCompatActivity {
-
+    Random random =  new Random();
+    Switch includeSymbol, includeUpperCase, includeLowerCase, includeNumerals, includeAmbiguous;
+    final private  String[] logs = new String[10];
     private static int rear=0, prev=0, capacity = 10;
     private static String[] queue = new String[capacity];
 
@@ -43,20 +37,9 @@ public class MainActivity extends AppCompatActivity {
         prev = rear;
         rear = ((rear+1) % capacity);
     }
-
     static String[] getValueFromQueue(){
         return queue;
     }
-
-    Random random =  new Random();
-    Switch includeSymbol, includeUpperCase, includeLowerCase, includeNumerals, includeAmbiguous;
-
-    final private  String[] logs = new String[10];
-
-    private void setLogs(){
-        if(logs.length == 10) ;
-    }
-
     private char getMyPassword(int type){
         char p = ' ';
         String symbols = "!@#$%*?+=&";
@@ -85,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return p;
     }
-
     private void setVariantsON(){
         if(includeSymbol.isChecked() || includeUpperCase.isChecked() || includeLowerCase.isChecked()
         || includeNumerals.isChecked() || includeAmbiguous.isChecked()){
@@ -93,10 +75,9 @@ public class MainActivity extends AppCompatActivity {
         }else {
             includeLowerCase.setChecked(true);
             includeUpperCase.setChecked(true);
-            includeSymbol.setChecked(true);
+//            includeSymbol.setChecked(true);
         }
     }
-
     private String generatePassword(int passLEN){
         StringBuilder password= new StringBuilder();
         char value;
@@ -115,13 +96,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(!(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)){
 
-            setContentView(R.layout.activity_main);
+            setContentView(R.layout.main_layout2);
 
             final TextView displayPassword = findViewById(R.id.displayPass);
             final TextView displayPassLen = findViewById(R.id.displayPassLen);
 
-            Button generatePasswordBtn = findViewById(R.id.genpass);
-            Button copyBtn = findViewById(R.id.copyBtn);
+            ImageButton generatePasswordBtn = findViewById(R.id.genpass);
+            ImageButton copyBtn = findViewById(R.id.copyBtn);
 
             // "Switch" for diff Variants
             includeSymbol = findViewById(R.id.includeSymbol);
@@ -144,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             getPassLenSeekBar.setMax(50);
 
             // set initial seekBar progress to 8
-            getPassLenSeekBar.setProgress(8);
+            getPassLenSeekBar.setProgress(12);
 
             password[0] = generatePassword(getPassLenSeekBar.getProgress());
             displayPassword.setText(password[0]);
@@ -187,16 +168,9 @@ public class MainActivity extends AppCompatActivity {
                     ClipData clipData = ClipData.newPlainText(label, password[0]);
                     clipboardManager.setPrimaryClip(clipData);
                     makeText(MainActivity.this, "password copied !",Toast.LENGTH_SHORT).show();
-
                     insertValueToQueue(String.valueOf(password[0]));
-                    System.out.println("password when copied "+password[0]);
-                    for(String i : getValueFromQueue())
-                     System.out.println("password in the iteration \t"+i);
                 }
             });
-
-
-
         }
 
         else setContentView(R.layout.landscape);
@@ -219,16 +193,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         System.out.println(rear);
-        if (!String.valueOf(menu.getItem(menu.size()-1)).equals(queue[prev]))
-        for (String x : getValueFromQueue())
-            if (x != null) menu.add(x);
+        if (!String.valueOf(menu.getItem(menu.size()-1)).equals(queue[prev])){
+            menu.clear();
+            menu.add("Password Logs");
+            menu.add("Copy Password ..");
+            for (String x : getValueFromQueue())
+                if (x != null) menu.add(x);
+        }
+
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.right_drawer_menu, menu);
+        menuInflater.inflate(R.menu.left_drawer_menu, menu);
         return true;
     }
 
@@ -241,6 +220,5 @@ public class MainActivity extends AppCompatActivity {
         makeText(MainActivity.this, "password copied !",Toast.LENGTH_SHORT).show();
         return super.onOptionsItemSelected(item);
     }
-
 
 }

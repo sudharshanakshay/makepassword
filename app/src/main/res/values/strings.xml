@@ -6,7 +6,7 @@
     <string name="uppercaseEg">e.g. ABSCDGHI</string>
     <string name="symbolEg">e.g. @#$%!%*+=?</string>
     <string name="numericalsEg">e.g. 123456</string>
-    <string name="ambiguousEg"><![CDATA[e.g. { } [ ] ( ) / \' ` ~ , ; : . < >]]></string>
+    <string name="ambiguousEg"><![CDATA[e.g. { } [ ] ( ) / \' ` ~ , ;]]></string>
     <string name="copyBtn">copy</string>
     <string name="lower_case">Lower Case</string>
     <string name="upper_case">Upper Case</string>

@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="GoogleAdKey">ca-app-pub-8835845551941199~5120880454</string>
+</resources>

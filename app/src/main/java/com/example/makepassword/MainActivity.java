@@ -27,7 +27,6 @@ import static android.widget.Toast.makeText;
 
 public class MainActivity extends AppCompatActivity {
     Random random =  new Random();
-    Switch includeSymbol, includeUpperCase, includeLowerCase, includeNumerals, includeAmbiguous;
     CheckBox uppercaseCB, lowercaseCB, numeralsCB, symbolsCB;
     final private  String[] logs = new String[10];
     private static int rear=0, prev=0, capacity = 10;
@@ -48,43 +47,33 @@ public class MainActivity extends AppCompatActivity {
         String ambiguous = "{}[]()/\\'\"`~,;:.<>^";
         switch (type){
             case 0:
-//                if (includeLowerCase.isChecked())
-                if(lowercaseCB.isEnabled())
-                    System.out.println("lowerCase");
-                p = (char)(random.nextInt(26)+'a'); // random alphabet
+                if(lowercaseCB.isChecked())
+                    p = (char)(random.nextInt(26)+'a'); // random alphabet
+                System.out.println("lowerCase");
             break;
-            case 1: {
-//                if(includeSymbol.isChecked()){
+            case 1:
                 if(symbolsCB.isChecked())
-                p = symbols.charAt(random.nextInt(symbols.length())); // random special char
-                }
+                    p = symbols.charAt(random.nextInt(symbols.length())); // random special char
                 break;
             case 2:
-//                if(includeNumerals.isChecked())
                 if(numeralsCB.isChecked())
-                p = (char)(random.nextInt(9) + 48); // random number
+                    p = (char)(random.nextInt(9) + 48); // random number
             break;
             case 3:
-//                if(includeUpperCase.isChecked())
                 if(uppercaseCB.isChecked())
-                p = (char)(random.nextInt(26)+'A'); // random alphabet CAPS
+                    p = (char)(random.nextInt(26)+'A'); // random alphabet CAPS
                 break;
-//            case 4:
             default:
-//                if(includeAmbiguous.isChecked())
                     p = ambiguous.charAt((random.nextInt(ambiguous.length())));
                 break;
         }
         return p;
     }
     private void setVariantsON(){
-        if(symbolsCB.isChecked() || uppercaseCB.isChecked() || lowercaseCB.isChecked()
-        || numeralsCB.isChecked()){
-            return;
-        }else {
+        if(!(symbolsCB.isChecked() || uppercaseCB.isChecked() || lowercaseCB.isChecked()
+                || numeralsCB.isChecked())) {
             uppercaseCB.setChecked(true);
             lowercaseCB.setChecked(true);
-//            includeSymbol.setChecked(true);
         }
     }
     private String generatePassword(int passLEN){
@@ -92,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         char value;
         while(password.length() < passLEN){
             setVariantsON();
-            value = getPasswordChar(random.nextInt(5));
+            value = getPasswordChar(random.nextInt(4));
             if(value == ' ') continue;
             password.append(value);
         }
@@ -113,19 +102,12 @@ public class MainActivity extends AppCompatActivity {
             ImageButton generatePasswordBtn = findViewById(R.id.genpass);
             ImageButton copyBtn = findViewById(R.id.copyBtn);
 
-            // "Switch" for diff Variants
-//            includeSymbol = findViewById(R.id.includeSymbol);
-//            includeUpperCase = findViewById(R.id.includeUpperChar);
-//            includeLowerCase = findViewById(R.id.includeLowerCase);
-//            includeNumerals = findViewById(R.id.includeNumericals);
-//            includeAmbiguous = findViewById(R.id.includeAmbiguous);
-
             // CheckBox for different variants
-
             uppercaseCB = findViewById(R.id.uppercaseCheckbox);
             lowercaseCB = findViewById(R.id.lowercaseCheckbox);
             numeralsCB = findViewById(R.id.numeralsCheckbox);
             symbolsCB = findViewById(R.id.symbolsCheckbox);
+
 
             // "SeekBar" to set password length
             SeekBar passwordLenseekBar = findViewById(R.id.getPassLenSeekBar);

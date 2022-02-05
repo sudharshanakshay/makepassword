@@ -96,121 +96,6 @@
             app:srcCompat="@drawable/ic_baseline_autorenew_24" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <Switch
-        android:id="@+id/includeSymbol"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/symbol"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeUpperChar" />
-
-    <Switch
-        android:id="@+id/includeUpperChar"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/upper_case"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeLowerCase" />
-
-    <Switch
-        android:id="@+id/includeLowerCase"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="416dp"
-        android:text="@string/lower_case"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Switch
-        android:id="@+id/includeAmbiguous"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/ambiguous"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeNumericals" />
-
-    <Switch
-        android:id="@+id/includeNumericals"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/numerals"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeSymbol" />
-
-    <TextView
-        android:id="@+id/lowerCaseExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="416dp"
-        android:text="@string/lowercaseEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/upperCaseExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/uppercaseEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lowerCaseExample" />
-
-    <TextView
-        android:id="@+id/specialCharExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/symbolEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upperCaseExample" />
-
-    <TextView
-        android:id="@+id/numericalsExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/numericalsEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/specialCharExample" />
-
-    <TextView
-        android:id="@+id/ambiguousExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/ambiguousEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numericalsExample" />
-
     <!--    <Button-->
     <!--        android:id="@+id/copyBtn"-->
     <!--        android:layout_width="wrap_content"-->
@@ -227,6 +112,7 @@
         android:id="@+id/getPassLenSeekBar"
         android:layout_width="205dp"
         android:layout_height="40dp"
+        android:progressTint="@color/yellow"
         android:thumbTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -247,6 +133,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.42" />
+
+    <CheckBox
+        android:id="@+id/uppercaseCheckbox"
+        android:layout_width="107dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:buttonTint="@color/colorPrimary"
+        android:text="Uppercase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.556" />
+
+    <CheckBox
+        android:id="@+id/lowercaseCheckbox"
+        android:layout_width="107dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:buttonTint="@color/colorPrimary"
+        android:text="Lowercase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.766"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.556" />
+
+    <CheckBox
+        android:id="@+id/numeralsCheckbox"
+        android:layout_width="107dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:buttonTint="@color/colorPrimary"
+        android:text="Numbers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uppercaseCheckbox"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <CheckBox
+        android:id="@+id/symbolsCheckbox"
+        android:layout_width="107dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:buttonTint="@color/colorPrimary"
+        android:text="Symbols"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.766"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lowercaseCheckbox"
+        app:layout_constraintVertical_bias="0.047" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

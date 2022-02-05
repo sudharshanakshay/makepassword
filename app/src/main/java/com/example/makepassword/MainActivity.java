@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -27,6 +28,7 @@ import static android.widget.Toast.makeText;
 public class MainActivity extends AppCompatActivity {
     Random random =  new Random();
     Switch includeSymbol, includeUpperCase, includeLowerCase, includeNumerals, includeAmbiguous;
+    CheckBox uppercaseCB, lowercaseCB, numeralsCB, symbolsCB;
     final private  String[] logs = new String[10];
     private static int rear=0, prev=0, capacity = 10;
     private static String[] queue = new String[capacity];
@@ -40,41 +42,48 @@ public class MainActivity extends AppCompatActivity {
     static String[] getValueFromQueue(){
         return queue;
     }
-    private char getMyPassword(int type){
+    private char getPasswordChar(int type){
         char p = ' ';
         String symbols = "!@#$%*?+=&";
         String ambiguous = "{}[]()/\\'\"`~,;:.<>^";
         switch (type){
             case 0:
-                if (includeLowerCase.isChecked())
+//                if (includeLowerCase.isChecked())
+                if(lowercaseCB.isEnabled())
+                    System.out.println("lowerCase");
                 p = (char)(random.nextInt(26)+'a'); // random alphabet
             break;
-            case 1: if(includeSymbol.isChecked()){
+            case 1: {
+//                if(includeSymbol.isChecked()){
+                if(symbolsCB.isChecked())
                 p = symbols.charAt(random.nextInt(symbols.length())); // random special char
                 }
                 break;
             case 2:
-                if(includeNumerals.isChecked())
+//                if(includeNumerals.isChecked())
+                if(numeralsCB.isChecked())
                 p = (char)(random.nextInt(9) + 48); // random number
             break;
             case 3:
-                if(includeUpperCase.isChecked())
+//                if(includeUpperCase.isChecked())
+                if(uppercaseCB.isChecked())
                 p = (char)(random.nextInt(26)+'A'); // random alphabet CAPS
                 break;
-            case 4:
-                if(includeAmbiguous.isChecked())
+//            case 4:
+            default:
+//                if(includeAmbiguous.isChecked())
                     p = ambiguous.charAt((random.nextInt(ambiguous.length())));
                 break;
         }
         return p;
     }
     private void setVariantsON(){
-        if(includeSymbol.isChecked() || includeUpperCase.isChecked() || includeLowerCase.isChecked()
-        || includeNumerals.isChecked() || includeAmbiguous.isChecked()){
+        if(symbolsCB.isChecked() || uppercaseCB.isChecked() || lowercaseCB.isChecked()
+        || numeralsCB.isChecked()){
             return;
         }else {
-            includeLowerCase.setChecked(true);
-            includeUpperCase.setChecked(true);
+            uppercaseCB.setChecked(true);
+            lowercaseCB.setChecked(true);
 //            includeSymbol.setChecked(true);
         }
     }
@@ -83,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         char value;
         while(password.length() < passLEN){
             setVariantsON();
-            value = getMyPassword(random.nextInt(5));
+            value = getPasswordChar(random.nextInt(5));
             if(value == ' ') continue;
             password.append(value);
         }
@@ -105,37 +114,41 @@ public class MainActivity extends AppCompatActivity {
             ImageButton copyBtn = findViewById(R.id.copyBtn);
 
             // "Switch" for diff Variants
-            includeSymbol = findViewById(R.id.includeSymbol);
-            includeUpperCase = findViewById(R.id.includeUpperChar);
-            includeLowerCase = findViewById(R.id.includeLowerCase);
-            includeNumerals = findViewById(R.id.includeNumericals);
-            includeAmbiguous = findViewById(R.id.includeAmbiguous);
+//            includeSymbol = findViewById(R.id.includeSymbol);
+//            includeUpperCase = findViewById(R.id.includeUpperChar);
+//            includeLowerCase = findViewById(R.id.includeLowerCase);
+//            includeNumerals = findViewById(R.id.includeNumericals);
+//            includeAmbiguous = findViewById(R.id.includeAmbiguous);
+
+            // CheckBox for different variants
+
+            uppercaseCB = findViewById(R.id.uppercaseCheckbox);
+            lowercaseCB = findViewById(R.id.lowercaseCheckbox);
+            numeralsCB = findViewById(R.id.numeralsCheckbox);
+            symbolsCB = findViewById(R.id.symbolsCheckbox);
 
             // "SeekBar" to set password length
-            SeekBar getPassLenSeekBar = findViewById(R.id.getPassLenSeekBar);
+            SeekBar passwordLenseekBar = findViewById(R.id.getPassLenSeekBar);
 
             // On start App, if lowerCase, upperCase & symbol Variants ON
             setVariantsON();
 
-            final String[] password = new String[1];
             final String label = "pass";
-            final int[] passLen = new int[1];
 
-            getPassLenSeekBar.setMin(5);
-            getPassLenSeekBar.setMax(50);
+            passwordLenseekBar.setMin(5);
+            passwordLenseekBar.setMax(30);
 
             // set initial seekBar progress to 8
-            getPassLenSeekBar.setProgress(12);
+            passwordLenseekBar.setProgress(12);
 
-            password[0] = generatePassword(getPassLenSeekBar.getProgress());
-            displayPassword.setText(password[0]);
-            displayPassLen.setText(String.valueOf(getPassLenSeekBar.getProgress()));
+            displayPassword.setText(generatePassword(passwordLenseekBar.getProgress()));
+            displayPassLen.setText(String.valueOf(passwordLenseekBar.getProgress()));
 
             // change the password length according to user
-            getPassLenSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            passwordLenseekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    seekBar.setTooltipText(String.valueOf(progress));
+                    displayPassLen.setText(String.valueOf(seekBar.getProgress()));
                 }
 
                 @Override
@@ -145,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-                    displayPassLen.setText(String.valueOf(seekBar.getProgress()));
+                    displayPassword.setText(generatePassword(seekBar.getProgress()));
                 }
             });
 
@@ -153,23 +166,17 @@ public class MainActivity extends AppCompatActivity {
             generatePasswordBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    password[0] = generatePassword(getPassLenSeekBar.getProgress());
-                    displayPassword.setText(password[0]);
-                    displayPassLen.setText(String.valueOf(password[0].length()));
-                    System.out.println("generated password "+password[0]);
+                    displayPassword.setText(generatePassword(passwordLenseekBar.getProgress()));
                 }
             });
 
             // copy password to clipBoard
-            copyBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                    ClipData clipData = ClipData.newPlainText(label, password[0]);
-                    clipboardManager.setPrimaryClip(clipData);
-                    makeText(MainActivity.this, "password copied !",Toast.LENGTH_SHORT).show();
-                    insertValueToQueue(String.valueOf(password[0]));
-                }
+            copyBtn.setOnClickListener(v -> {
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText(label, displayPassword.getText());
+                clipboardManager.setPrimaryClip(clipData);
+                makeText(MainActivity.this, "password copied !",Toast.LENGTH_SHORT).show();
+                insertValueToQueue(String.valueOf(displayPassword.getText()));
             });
         }
 

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <item
-        android:id= "@+id/l1"
+        android:id= "@+id/item1"
         android:title= "layout 1"/>
     <item
         android:id="@+id/l2"

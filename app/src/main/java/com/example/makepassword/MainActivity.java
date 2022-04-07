@@ -9,6 +9,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
     private static int rear=0, prev=0, capacity = 10;
     private static String[] queue = new String[capacity];
 
+    static String lowerCaseFontColor = "<font color='#FF6329'>";     //orange
+    static String upperCaseFontColor = "<font color='#6ACFFB'>";           //Blue
+    static String numeralsFontColor = "<font color='#5b4579'>";            //purple
+    static String specialCharFontColor = "<font color='#4041d4'>";        //some other blue
+    static String endHtmlFont = "</font>";
+
     static void insertValueToQueue(String value){
         if(value.equals(queue[prev])) return;
         queue[rear] = value;
@@ -46,30 +53,47 @@ public class MainActivity extends AppCompatActivity {
     static String[] getValueFromQueue(){
         return queue;
     }
+
+
     private char getPasswordChar(int type){
         char p = ' ';
+        String q ="";
         String symbols = "!@#$%*?+=&";
         String ambiguous = "{}[]()/\\'\"`~,;:.<>^";
         switch (type){
             case 0:
                 if(lowercaseCB.isChecked())
+                {
                     p = (char)(random.nextInt(26)+'a'); // random alphabet
-                System.out.println("lowerCase");
+//                    q =lowerCaseFontColor+p+endHtmlFont;
+                }
             break;
             case 1:
                 if(symbolsCB.isChecked())
+                {
                     p = symbols.charAt(random.nextInt(symbols.length())); // random special char
+//                    q =specialCharFontColor+p+endHtmlFont;
+                }
                 break;
             case 2:
                 if(numeralsCB.isChecked())
+                {
                     p = (char)(random.nextInt(9) + 48); // random number
+//                    q =numeralsFontColor+p+endHtmlFont;
+                }
             break;
             case 3:
                 if(uppercaseCB.isChecked())
+                {
                     p = (char)(random.nextInt(26)+'A'); // random alphabet CAPS
+//                    q =upperCaseFontColor+p+endHtmlFont;
+                }
                 break;
             default:
-                    p = ambiguous.charAt((random.nextInt(ambiguous.length())));
+            {
+                p = ambiguous.charAt((random.nextInt(ambiguous.length())));
+//                q =lowerCaseFontColor+p+endHtmlFont;
+            }
                 break;
         }
         return p;
@@ -84,13 +108,34 @@ public class MainActivity extends AppCompatActivity {
     private String generatePassword(int passLEN){
         StringBuilder password= new StringBuilder();
         char value;
-        while(password.length() < passLEN){
+        int i;
+        while (password.length() < passLEN){
             setVariantsON();
             value = getPasswordChar(random.nextInt(4));
             if(value == ' ') continue;
             password.append(value);
         }
-        return password.toString();
+        System.out.println(colorPassword(password.toString()));
+        return colorPassword(password.toString());
+    }
+
+    private String colorPassword(String password){
+        StringBuilder newPassword = new StringBuilder();
+        for(int i=0; i<password.length(); i++){
+            if(Character.isLowerCase(password.charAt(i))){
+                newPassword.append(lowerCaseFontColor+password.charAt(i)+endHtmlFont);
+            }
+            else if(Character.isUpperCase(password.charAt(i))){
+                newPassword.append(upperCaseFontColor+password.charAt(i)+endHtmlFont);
+            }
+            else if(Character.isDigit(password.charAt(i))){
+                newPassword.append(numeralsFontColor+password.charAt(i)+endHtmlFont);
+            }
+            else{
+                newPassword.append(specialCharFontColor+password.charAt(i)+endHtmlFont);
+            }
+        }
+        return newPassword.toString();
     }
 
 
@@ -129,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
             // set initial seekBar progress to 8
             passwordLenseekBar.setProgress(12);
 
-            displayPassword.setText(generatePassword(passwordLenseekBar.getProgress()));
+            displayPassword.setText(Html.fromHtml(generatePassword(passwordLenseekBar.getProgress())));
             displayPassLen.setText(String.valueOf(passwordLenseekBar.getProgress()));
 
 
@@ -147,15 +192,18 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-                    displayPassword.setText(generatePassword(seekBar.getProgress()));
+//                    displayPassword.setText(generatePassword(seekBar.getProgress()));
+                    displayPassword.setText(Html.fromHtml(generatePassword(passwordLenseekBar.getProgress())));
                 }
+
             });
 
             // generate password based on seekBar length
             generatePasswordBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    displayPassword.setText(generatePassword(passwordLenseekBar.getProgress()));
+//                    displayPassword.setText(generatePassword(passwordLenseekBar.getProgress()));
+                    displayPassword.setText(Html.fromHtml(generatePassword(passwordLenseekBar.getProgress())));
                 }
             });
 
@@ -177,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
 //    @Override
 //    public void onBackPressed() {

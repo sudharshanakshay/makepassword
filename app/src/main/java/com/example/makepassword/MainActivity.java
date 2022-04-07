@@ -19,11 +19,16 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Random;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import static android.widget.Toast.makeText;
+
 
 public class MainActivity extends AppCompatActivity {
     Random random =  new Random();
@@ -88,13 +93,14 @@ public class MainActivity extends AppCompatActivity {
         return password.toString();
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if(!(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)){
 
-            setContentView(R.layout.main_layout2);
+            setContentView(R.layout.activity_main);
 
             final TextView displayPassword = findViewById(R.id.displayPass);
             final TextView displayPassLen = findViewById(R.id.displayPassLen);
@@ -125,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
             displayPassword.setText(generatePassword(passwordLenseekBar.getProgress()));
             displayPassLen.setText(String.valueOf(passwordLenseekBar.getProgress()));
+
 
             // change the password length according to user
             passwordLenseekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -171,13 +178,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if(drawer.isDrawerOpen(GravityCompat.END))
-            drawer.closeDrawer(GravityCompat.END);
-        else super.onBackPressed();
-    }
+//    @Override
+//    public void onBackPressed() {
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//        if(drawer.isDrawerOpen(GravityCompat.END))
+//            drawer.closeDrawer(GravityCompat.END);
+//        else super.onBackPressed();
+//    }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -210,4 +217,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+}
+
+class DisplayPassword extends androidx.appcompat.widget.AppCompatTextView{
+
+    public DisplayPassword(@NonNull Context context) {
+        super(context);
+    }
+
+    String me = "hello";
 }

@@ -4,8 +4,5 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id= "@+id/item1"
-        android:title= "layout 1"/>
-    <item
-        android:id="@+id/l2"
-        android:title="layout 2"/>
+        android:title= "layout_1"/>
 </menu>

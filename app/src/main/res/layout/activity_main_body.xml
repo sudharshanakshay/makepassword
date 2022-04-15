@@ -6,70 +6,76 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate a Secure Password"
+        android:text="@string/generate_a_secure_password"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="28dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037" />
+        app:layout_constraintVertical_bias="0.04" />
 
-    <!--    <Button-->
-    <!--        android:id="@+id/genpass"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="@drawable/border"-->
-    <!--        android:text="@string/generate_password"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.283"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/border"
-        android:minWidth="248dp"
-        android:minHeight="80dp"
+        android:maxWidth="240dp"
+        android:maxHeight="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.717">
+        app:layout_constraintVertical_bias="0.17">
 
         <TextView
             android:id="@+id/displayPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:hint="@string/password"
-            android:maxWidth="248dp"
-            android:minWidth="248dp"
-            android:minHeight="80dp"
+            android:minWidth="200dp"
+            android:maxWidth="200dp"
+            android:minHeight="69dp"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/genpass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/textWhite"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.628" />
+            app:layout_constraintVertical_bias="0.623"
+            app:srcCompat="@drawable/ic_baseline_autorenew_24"
+            android:contentDescription="@string/refresh_button" />
 
         <ImageButton
             android:id="@+id/copyBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             android:layout_gravity="center"
             android:background="@color/textWhite"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
             android:tint="@color/copyBtn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,176 +83,93 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.623"
-            app:srcCompat="@drawable/ic_baseline_file_copy_24" />
+            app:srcCompat="@drawable/ic_baseline_file_copy_24"
+            android:contentDescription="@string/copy_button" />
 
-        <ImageButton
-            android:id="@+id/genpass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:background="@color/textWhite"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.623"
-            app:srcCompat="@drawable/ic_baseline_autorenew_24" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <Switch
-        android:id="@+id/includeSymbol"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/symbol"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeUpperChar" />
-
-    <Switch
-        android:id="@+id/includeUpperChar"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/upper_case"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeLowerCase" />
-
-    <Switch
-        android:id="@+id/includeLowerCase"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="92dp"
-        android:text="@string/lower_case"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Switch
-        android:id="@+id/includeAmbiguous"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/ambiguous"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeNumericals" />
-
-    <Switch
-        android:id="@+id/includeNumericals"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/numerals"
-        android:theme="@style/SCBSwitch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeSymbol" />
-
-    <TextView
-        android:id="@+id/lowerCaseExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="92dp"
-        android:text="@string/lowercaseEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/upperCaseExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/uppercaseEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lowerCaseExample" />
-
-    <TextView
-        android:id="@+id/specialCharExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/symbolEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upperCaseExample" />
-
-    <TextView
-        android:id="@+id/numericalsExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/numericalsEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/specialCharExample" />
-
-    <TextView
-        android:id="@+id/ambiguousExample"
-        android:layout_width="110dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/ambiguousEg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.794"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numericalsExample" />
-
-    <!--    <Button-->
-    <!--        android:id="@+id/copyBtn"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:backgroundTint="@color/copyBtn"-->
-    <!--        android:text="@string/copyBtn"-->
-    <!--        android:textColor="@color/textWhite"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.739"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <SeekBar
         android:id="@+id/getPassLenSeekBar"
-        android:layout_width="145dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="44dp"
+        android:layout_width="205dp"
+        android:layout_height="40dp"
+        android:progressTint="@color/yellow"
         android:thumbTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toEndOf="@+id/displayPassLen"
-        app:layout_constraintTop_toBottomOf="@+id/ambiguousExample"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintHorizontal_bias="0.655"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.418" />
 
     <TextView
         android:id="@+id/displayPassLen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="32dp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.209"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/includeAmbiguous"
-        app:layout_constraintVertical_bias="0.13" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42" />
+
+    <CheckBox
+        android:id="@+id/uppercaseCheckbox"
+        android:layout_width="107dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:buttonTint="@color/colorPrimary"
+        android:text="@string/uppercase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.556" />
+
+    <CheckBox
+        android:id="@+id/lowercaseCheckbox"
+        android:layout_width="107dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:buttonTint="@color/colorPrimary"
+        android:text="@string/lowercase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.766"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.556" />
+
+    <CheckBox
+        android:id="@+id/numeralsCheckbox"
+        android:layout_width="107dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:buttonTint="@color/colorPrimary"
+        android:text="@string/numbers"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uppercaseCheckbox"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <CheckBox
+        android:id="@+id/symbolsCheckbox"
+        android:layout_width="107dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:buttonTint="@color/colorPrimary"
+        android:text="@string/symbols"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.766"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lowercaseCheckbox"
+        app:layout_constraintVertical_bias="0.047" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

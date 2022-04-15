@@ -268,11 +268,3 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-class DisplayPassword extends androidx.appcompat.widget.AppCompatTextView{
-
-    public DisplayPassword(@NonNull Context context) {
-        super(context);
-    }
-
-    String me = "hello";
-}

@@ -26,7 +26,11 @@
 </div>
 <br />
 
+<div style="display:block; float:left;">
+
 ###  If there is any Issues -> notify us by creating new Issue.
 
 ### Any new ideas or updates are always welcome.
 - new pull requests to integrate existing one, to open source community.
+
+</div>

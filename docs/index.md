@@ -19,6 +19,9 @@
 <img src=".//assets/lower_select.png" alt="only lowercase" width="200dp">
 <img src=".//assets/number_select.png" alt="only number" width="200dp">
 </div>
+
+<br/>
+
 <div style="display:block; float:left;">
 <img src=".//assets/symbol_select.png" alt="only symbol" width="200dp">
 <img src=".//assets/uppper_select.png" alt="only uppercase" width="200dp">
@@ -26,7 +29,12 @@
 </div>
 <br />
 
+<div style="display:block; float:left;">
+
 ###  If there is any Issues -> notify us by creating new Issue.
 
 ### Any new ideas or updates are always welcome.
 - new pull requests to integrate existing one, to open source community.
+
+</div>
+

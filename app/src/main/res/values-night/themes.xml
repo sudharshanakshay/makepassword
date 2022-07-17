@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MakePassword" parent="Theme.AppCompat.Light">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/colorAccent</item>
+        <!-- Secondary brand color. -->
+        <!--        <item name="colorSecondary">@color/teal_200</item>-->
+        <!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
+        <!--        <item name="colorOnSecondary">@color/black</item>-->
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimaryDark</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="titleTextColor">@color/textWhite</item>
+        <item name="android:actionMenuTextColor">@color/textWhite</item>
+        <item name="tint">@color/textWhite</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>

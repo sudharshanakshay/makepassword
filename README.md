@@ -6,7 +6,7 @@
     - Lowercase Alphabets
     - Numbers &
     - Symbols.
-- Password lenght can be varied between 5 to 30.
+- Password length can be varied between 5 to 30.
 
 ## Software & Language used
 - Android Studio - Java, XML
@@ -21,7 +21,7 @@
 </div>
 <div style="display:block; float:left;">
 <img src="./docs/assets/symbol_select.png" alt="only symbol" width="200dp">
-<img src="./docs/assets/uppper_select.png" alt="only uppercase" width="200dp">
+<img src="./docs/assets/upper_select.png" alt="only uppercase" width="200dp">
 <img src="./docs/assets/with_logo.png" alt="With logo" width="200dp">
 </div>
 <br />

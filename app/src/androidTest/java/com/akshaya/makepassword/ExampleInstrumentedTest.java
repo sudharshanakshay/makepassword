@@ -1,4 +1,4 @@
-package com.example.makepassword;
+package com.akshaya.makepassword;
 
 import android.content.Context;
 

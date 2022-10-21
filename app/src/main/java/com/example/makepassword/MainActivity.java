@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             final TextView displayPassword = findViewById(R.id.displayPass);
             final TextView displayPassLen = findViewById(R.id.displayPassLen);
 
-            ImageButton generatePasswordBtn = findViewById(R.id.genpass);
+            ImageButton generatePasswordBtn = findViewById(R.id.genPassBtn);
             ImageButton copyBtn = findViewById(R.id.copyBtn);
 
             // CheckBox for different variants

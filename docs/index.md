@@ -29,12 +29,9 @@
 </div>
 <br />
 
-<div style="display:block; float:left;">
+## 🚀🌟 Join our open-source project and contribute to its growth!
 
-###  If there is any Issues -> notify us by creating new Issue.
+### 🤝🌐 We invite you to collaborate and enhance the app on GitHub.
 
-### Any new ideas or updates are always welcome.
-- new pull requests to integrate existing one, to open source community.
 
-</div>
 
